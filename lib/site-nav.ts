@@ -9,8 +9,8 @@ export const siteConfig = {
     "Our professional bookkeeping services keep your financial records organized, up to date, and ready for taxes or lenders. We deliver clear reporting so you understand cash flow and profitability—and manage the books so you can run the business with confidence.",
   phone: "808 746 7913",
   phoneTel: "tel:+18087467913",
-  email: "info@primegrowth.tech",
-  emailMailto: "mailto:info@primegrowth.tech",
+  email: "info@primegrowth.store",
+  emailMailto: "mailto:info@primegrowth.store",
   addressLines: ["824 E 9TH ST, APT. 6C", "BROOKLYN, NY, 11230, USA"],
   hours: "Mon–Fri",
 } as const
