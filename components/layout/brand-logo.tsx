@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-nav"
 
 type BrandLogoProps = {
   variant?: "light" | "dark"
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | "xl"
   className?: string
   markOnly?: boolean
 }
@@ -13,7 +13,8 @@ type BrandLogoProps = {
 const sizeMap = {
   sm: { height: "h-7", gap: "gap-2", word: "text-[0.9375rem]" },
   md: { height: "h-8 md:h-9", gap: "gap-2.5", word: "text-[1rem] md:text-[1.0625rem]" },
-  lg: { height: "h-10", gap: "gap-3", word: "text-[1.1875rem]" },
+  lg: { height: "h-10 md:h-11", gap: "gap-3", word: "text-[1.1875rem] md:text-[1.3125rem]" },
+  xl: { height: "h-12 md:h-14", gap: "gap-3.5", word: "text-[1.375rem] md:text-[1.5rem]" },
 } as const
 
 /**

@@ -1,8 +1,12 @@
 export const siteConfig = {
   name: "PrimeGrowth",
   tagline: "Virtual bookkeeping for growing teams.",
+  /** Short label under the footer logo (matches common bookkeeping footer pattern). */
+  footerEyebrow: "Virtual Bookkeeping",
   description:
     "PrimeGrowth runs your monthly books, payroll, and reporting—so you always know where the business stands before you make the next decision.",
+  footerDescription:
+    "Our professional bookkeeping services keep your financial records organized, up to date, and ready for taxes or lenders. We deliver clear reporting so you understand cash flow and profitability—and manage the books so you can run the business with confidence.",
   phone: "808 746 7913",
   phoneTel: "tel:+18087467913",
   email: "info@primegrowth.tech",
@@ -23,9 +27,19 @@ export const mainNav: NavItem[] = [
 ]
 
 export const policyNav: NavItem[] = [
-  { href: "/website-disclaimer", label: "Website Disclaimer" },
+  { href: "/terms-and-conditions", label: "Terms & Conditions" },
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/refund-policy", label: "Refund Policy" },
+  { href: "/website-disclaimer", label: "Website Disclaimer" },
+]
+
+/** Quick links column in the footer (Services listed separately). */
+export const footerQuickLinks: NavItem[] = [
+  { href: "/", label: "Home" },
+  { href: "/industries", label: "Industries" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/why-choose-us", label: "Why Choose Us" },
+  { href: "/contact", label: "Contact" },
 ]
 
 export const serviceLinks: NavItem[] = [

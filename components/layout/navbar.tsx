@@ -114,7 +114,7 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-4 px-5 md:h-[4.5rem] md:px-8">
-        <BrandLogo variant="light" size="md" />
+        <BrandLogo variant="light" size="lg" />
 
         <div className="hidden items-center gap-1 lg:flex">
           {mainNav.map((item) =>
@@ -142,17 +142,12 @@ export function Navbar() {
                         <Link
                           key={svc.id}
                           href={`/services#${svc.id}`}
-                          className="flex gap-3 rounded-lg px-3 py-2.5 transition hover:bg-muted"
+                          className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-muted"
                         >
                           <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-signal/10 text-signal">
                             <svc.icon className="size-4" aria-hidden />
                           </span>
-                          <span>
-                            <span className="block text-sm font-semibold text-ink">{svc.title}</span>
-                            <span className="mt-0.5 block text-xs leading-snug text-muted-foreground line-clamp-2">
-                              {svc.shortDesc}
-                            </span>
-                          </span>
+                          <span className="text-sm font-semibold text-ink">{svc.title}</span>
                         </Link>
                       ))}
                     </div>
