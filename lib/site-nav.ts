@@ -24,6 +24,7 @@ export const mainNav: NavItem[] = [
   { href: "/pricing", label: "Pricing" },
   { href: "/why-choose-us", label: "Why choose us" },
   { href: "/contact", label: "Contact" },
+  { href: "/website-disclaimer", label: "Website Disclaimer" },
 ]
 
 export const policyNav: NavItem[] = [
