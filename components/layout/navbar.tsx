@@ -7,7 +7,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ChevronDownIcon, MenuIcon, PhoneIcon, XIcon, ArrowRightIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { mainNav, serviceLinks, siteConfig } from "@/lib/site-nav"
+import { headerPolicyLinks, mainNav, serviceLinks, siteConfig } from "@/lib/site-nav"
 import { services } from "@/lib/services-data"
 import { BrandLogo } from "@/components/layout/brand-logo"
 
@@ -17,6 +17,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const [mobileSlideIn, setMobileSlideIn] = React.useState(false)
   const [servicesOpen, setServicesOpen] = React.useState(false)
+  const [policyOpen, setPolicyOpen] = React.useState(false)
   const mobilePanelRef = React.useRef<HTMLDivElement>(null)
   const mobileClosingUserRef = React.useRef(false)
 
@@ -103,6 +104,7 @@ export function Navbar() {
   }
 
   const servicesActive = pathname.startsWith("/services")
+  const policyActive = headerPolicyLinks.some((link) => pathname.startsWith(link.href))
 
   return (
     <header
@@ -117,44 +119,85 @@ export function Navbar() {
         <BrandLogo variant="light" size="lg" />
 
         <div className="hidden items-center gap-1 lg:flex">
-          {mainNav.map((item) =>
-            item.href === "/services" ? (
-              <div
-                key={item.href}
-                className="relative"
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
-              >
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition",
-                    servicesActive ? "bg-muted text-ink" : "text-ink/65 hover:bg-muted/80 hover:text-ink"
-                  )}
+          {mainNav.map((item) => {
+            if (item.href === "/services") {
+              return (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => setServicesOpen(true)}
+                  onMouseLeave={() => setServicesOpen(false)}
                 >
-                  {item.label}
-                  <ChevronDownIcon className="size-3.5" aria-hidden />
-                </Link>
-                {servicesOpen ? (
-                  <div className="absolute left-0 top-full z-50 w-72 pt-2">
-                    <div className="overflow-hidden rounded-xl border border-ink/10 bg-surface-elevated p-2 shadow-lg">
-                      {services.map((svc) => (
-                        <Link
-                          key={svc.id}
-                          href={`/services#${svc.id}`}
-                          className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-muted"
-                        >
-                          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-signal/10 text-signal">
-                            <svc.icon className="size-4" aria-hidden />
-                          </span>
-                          <span className="text-sm font-semibold text-ink">{svc.title}</span>
-                        </Link>
-                      ))}
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition",
+                      servicesActive ? "bg-muted text-ink" : "text-ink/65 hover:bg-muted/80 hover:text-ink"
+                    )}
+                  >
+                    {item.label}
+                    <ChevronDownIcon className="size-3.5" aria-hidden />
+                  </Link>
+                  {servicesOpen ? (
+                    <div className="absolute left-0 top-full z-50 w-72 pt-2">
+                      <div className="overflow-hidden rounded-xl border border-ink/10 bg-surface-elevated p-2 shadow-lg">
+                        {services.map((svc) => (
+                          <Link
+                            key={svc.id}
+                            href={`/services#${svc.id}`}
+                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-muted"
+                          >
+                            <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-signal/10 text-signal">
+                              <svc.icon className="size-4" aria-hidden />
+                            </span>
+                            <span className="text-sm font-semibold text-ink">{svc.title}</span>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ) : null}
-              </div>
-            ) : (
+                  ) : null}
+                </div>
+              )
+            }
+
+            if (item.label === "Policy") {
+              return (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => setPolicyOpen(true)}
+                  onMouseLeave={() => setPolicyOpen(false)}
+                >
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition",
+                      policyActive ? "bg-muted text-ink" : "text-ink/65 hover:bg-muted/80 hover:text-ink"
+                    )}
+                  >
+                    {item.label}
+                    <ChevronDownIcon className="size-3.5" aria-hidden />
+                  </Link>
+                  {policyOpen ? (
+                    <div className="absolute left-0 top-full z-50 w-52 pt-2">
+                      <div className="overflow-hidden rounded-xl border border-ink/10 bg-surface-elevated p-2 shadow-lg">
+                        {headerPolicyLinks.map((link) => (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-ink transition hover:bg-muted"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              )
+            }
+
+            return (
               <Link
                 key={item.href}
                 href={item.href}
@@ -166,7 +209,7 @@ export function Navbar() {
                 {item.label}
               </Link>
             )
-          )}
+          })}
         </div>
 
         <div className="flex items-center gap-2">
@@ -227,7 +270,13 @@ export function Navbar() {
                           onClick={closeMobile}
                           className={cn(
                             "flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium",
-                            isActive(link.href) ? "bg-muted text-ink" : "text-ink/75"
+                            link.label === "Policy"
+                              ? policyActive
+                                ? "bg-muted text-ink"
+                                : "text-ink/75"
+                              : isActive(link.href)
+                                ? "bg-muted text-ink"
+                                : "text-ink/75"
                           )}
                         >
                           {link.label}
@@ -243,6 +292,21 @@ export function Navbar() {
                                   className="block py-1.5 text-sm text-muted-foreground hover:text-signal"
                                 >
                                   {s.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        {link.label === "Policy" ? (
+                          <ul className="mb-2 ml-2 space-y-1 border-l border-ink/10 pl-3">
+                            {headerPolicyLinks.map((p) => (
+                              <li key={p.href}>
+                                <Link
+                                  href={p.href}
+                                  onClick={closeMobile}
+                                  className="block py-1.5 text-sm text-muted-foreground hover:text-signal"
+                                >
+                                  {p.label}
                                 </Link>
                               </li>
                             ))}

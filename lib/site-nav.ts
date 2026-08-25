@@ -24,7 +24,12 @@ export const mainNav: NavItem[] = [
   { href: "/pricing", label: "Pricing" },
   { href: "/why-choose-us", label: "Why choose us" },
   { href: "/contact", label: "Contact" },
-  { href: "/website-disclaimer", label: "Website Disclaimer" },
+  { href: "/privacy-policy", label: "Policy" },
+]
+
+export const headerPolicyLinks: NavItem[] = [
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/refund-policy", label: "Refund Policy" },
 ]
 
 export const policyNav: NavItem[] = [
